@@ -1,0 +1,71 @@
+$background-border: 1px;
+$border-radius: 15px;
+$min-height: 34px;
+$min-width: 100px;
+$width: 50%;
+
+
+.selector {
+    background-color: white;
+    border-radius: $border-radius;
+    display: flex;
+    position: relative;
+
+    .element {
+        border-radius: $border-radius;    
+        height: auto;
+    }
+
+    .background{
+        border: $background-border solid white;
+        height: calc(100% - 2 * #{$background-border});
+        min-height: calc(#{$min-height} - 2 * #{$background-border});
+        min-width: calc(#{$min-width} - 2 * #{$background-border});
+        position: absolute;
+        width: calc(#{$width} - 2 * #{$background-border});
+        z-index: 1;
+        
+        &.animated {
+            transition: background-color 1s, left 1s linear;
+        }
+
+        &.correct {
+            background-color:rgba(0, 128, 0, 0.4);
+            left: 0;
+        }
+
+        &.wrong {
+            background-color: rgba(255, 0, 0, 0.4);
+            left: 50%;
+        }
+    }
+}
+
+.selector-variants {
+    display: flex;
+
+    .variant {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        min-height: $min-height;
+        min-width: $min-width;
+        width: $width;
+        z-index: 0;
+
+        .value {
+            text-transform: uppercase;
+            padding: 0 5px;
+            z-index: 2;
+
+            &.correct {
+                color: green;
+            }
+
+            &.wrong {
+                color: red;
+            }
+        }
+    }
+}
